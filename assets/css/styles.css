@@ -83,6 +83,133 @@ nav a:hover {
     margin-left: 30px;
 }
 
+/* MAIN */
+
+.container-aqua {
+    background-color: #a5dce9;
+    text-align: center;
+}
+
+.title-container {
+    padding: 60px 140px 40px;
+}
+
+.title-container h1 {
+    font-size: 40px;
+}
+
+.form-container {
+    padding: 0px 140px 60px;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-container input {
+    width: 80%;
+    margin-bottom: 10px;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.add-button, .edit-button, .delete-button {
+    color: #2f2f2f;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Signika Negative', sans-serif;
+    border-radius: 10px;
+    border: none;
+    transition: 0.3s;
+}
+
+.add-button {
+    background-color: #f7e8a4;
+}
+
+.add-button:hover {
+    background-color: #e5d352;
+    color: #941c2f;
+}
+
+.add-button {
+    width: 50%;
+    font-size: 18px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.table-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 140px 80px;
+}
+
+.table-container table {
+    width: 100%;
+    margin: 10px;
+}
+
+.table-container thead {
+    font-weight: bold;
+    background-color: #a88dd1;
+}
+
+.table-container th, .table-container td {
+    width: 20%;
+    padding: 8px;
+    /* border: solid 2px #2f2f2f; */
+}
+
+.table-container tbody tr:nth-child(odd) {
+    background-color: #d9eef3;
+}
+
+.table-container tbody tr:nth-child(even) {
+    background-color: #c6eef7;
+}
+
+.edit-button, .delete-button {
+    padding: 10px;
+    font-size: 14px;
+    margin: 2px;
+}
+
+.edit-button {
+    background-color: rgb(87, 206, 127);
+}
+
+.delete-button {
+    background-color: rgb(214, 69, 117);
+}
+
+.edit-button:hover {
+    background-color: rgb(149, 255, 184);
+}
+
+.delete-button:hover {
+    background-color: rgb(255, 146, 182);
+}
+
+
+/* FOOTER */
+.footer-container {
+    text-align: center;
+    background-color: #a88dd1;
+    padding: 40px;
+    color: #2f2f2f;
+}
+
+.footer-container a {
+    color: #941c2f;
+    text-decoration: none;
+}
+
 
 /* MEDIA QUERIES */
 
@@ -100,5 +227,10 @@ nav a:hover {
 
     .hamburger {
         display: inline-block;
+    }
+
+    .title-container, .form-container, .table-container {
+        padding-left: 20px;
+        padding-right: 20px;
     }
 }
