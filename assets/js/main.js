@@ -76,3 +76,22 @@ function addProduct (e) {
   productForm.reset();
 }
 
+////////////////////////////////////////////////////////
+// Delete a product from local storage
+////////////////////////////////////////////////////////
+
+function deleteProduct (key) {
+
+  // Get product from local storage
+  let product = JSON.parse(localStorage.getItem(key));
+  // Create message to show on alert
+  let message = `¿De verdad quiere eliminar el producto "${product.name} ${product.color}"?`;
+
+  // Ask if user really wants to delete the product
+  if (confirm(message)) {
+    // Remove product from array and display updated list of products
+    localStorage.removeItem(key);
+    listProducts();
+  }
+
+}
