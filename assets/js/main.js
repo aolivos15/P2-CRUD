@@ -7,9 +7,6 @@ const addButton = document.getElementById('add-button');
 const productForm = document.getElementById('product-form');
 const tableBody = document.getElementById('table-body');
 
-// Array to store products
-let productArray = [];
-
 // On page load, get all products from local storage and list them on the table
 listProducts();
 
@@ -18,27 +15,27 @@ listProducts();
 ////////////////////////////////////////////////////////
 function listProducts () {
 
-  // Get keys of all products in local storage
-  let keys = Object.keys(localStorage);
-
-  // Store "product" objects in an array
-  keys.forEach(key => {
-    productArray.push( JSON.parse(localStorage.getItem(key)) );
-  });
-
   tableBody.innerHTML = ''; // Reset contents of table body
 
-  // If there are products in local storage, list them on the table
-  if (productArray.length != 0) {
-    productArray.forEach( product => {
+  // Get keys of all products in local storage
+  let keys = Object.keys(localStorage);
+  // Product IDs / keys are defined when each product is added to the local storage using "Date.now()",
+  // so we sort keys in ascending order for the function to list products in the order they were added
+  keys.sort(function(a, b){return a - b});
+
+  // If there are products in the local storage, list them on the table
+  if (keys.length != 0) {
+    keys.forEach( key => {
+      let product = JSON.parse(localStorage.getItem(key));
+
       tableBody.innerHTML += `
       <td>${product.name}</td>
       <td>${product.color}</td>
       <td>${product.price}</td>
       <td>${product.quantity}</td>
       <td>
-        <button class="edit-button" onclick="editProduct(${product.id});">Editar</button>
-        <button class="delete-button" onclick="deleteProduct(${product.id});">Eliminar</button>
+        <button class="edit-button" onclick="editProduct(${key});">Editar</button>
+        <button class="delete-button" onclick="deleteProduct(${key});">Eliminar</button>
       </td>
       `;
     });
@@ -48,8 +45,6 @@ function listProducts () {
     <td colspan="5">Aún no se han agregado productos al inventario</td>
     `;
   }
-
-
 
 }
 
@@ -62,7 +57,9 @@ function addProduct (e) {
   // Prevent the button from resetting the page
   e.preventDefault();
 
-  let productID = Date.now(); // Get an ID for the new product
+  // Generate an ID / key for the new product
+  let productID = Date.now();
+
   // Create the new product with the data on the form
   const newProduct = {
     name: prodName.value,
@@ -78,3 +75,4 @@ function addProduct (e) {
   listProducts();
   productForm.reset();
 }
+
