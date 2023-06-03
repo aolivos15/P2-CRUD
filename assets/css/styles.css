@@ -143,6 +143,10 @@ nav a:hover {
     margin-top: 10px;
 }
 
+.hide {
+    display: none;
+}
+
 .table-container {
     display: flex;
     align-items: center;
