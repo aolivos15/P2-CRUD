@@ -15,6 +15,9 @@ h1, h2 {
     font-family: 'Lily Script One', cursive;
 }
 
+
+/* NAVBAR */
+
 nav {
     background-color: #a88dd1;
     padding: 5px 30px;
@@ -83,12 +86,15 @@ nav a:hover {
     margin-left: 30px;
 }
 
+
 /* MAIN */
 
 .container-aqua {
     background-color: #a5dce9;
     text-align: center;
 }
+
+/* MAIN - TITLE */
 
 .title-container {
     padding: 60px 140px 40px;
@@ -97,6 +103,9 @@ nav a:hover {
 .title-container h1 {
     font-size: 40px;
 }
+
+
+/* MAIN - FORM */
 
 .form-container {
     padding: 0px 140px 60px;
@@ -147,6 +156,9 @@ nav a:hover {
     display: none;
 }
 
+
+/* MAIN - TABLE */
+
 .table-container {
     display: flex;
     align-items: center;
@@ -179,8 +191,8 @@ nav a:hover {
 }
 
 .edit-button, .delete-button {
-    padding: 10px;
-    font-size: 14px;
+    padding: 14px 20px;
+    font-size: 16px;
     margin: 2px;
 }
 
@@ -200,8 +212,13 @@ nav a:hover {
     background-color: rgb(255, 146, 182);
 }
 
+.icon-margin {
+    margin-right: 8px;
+}
+
 
 /* FOOTER */
+
 .footer-container {
     text-align: center;
     background-color: #a88dd1;

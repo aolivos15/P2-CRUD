@@ -35,15 +35,15 @@ function listProducts () {
       <td>${product.price}</td>
       <td>${product.quantity}</td>
       <td>
-        <button class="edit-button" onclick="editProduct(${key});">Editar</button>
-        <button class="delete-button" onclick="deleteProduct(${key});">Eliminar</button>
+        <button class="edit-button" title="Editar" onclick="editProduct(${key});"><i class="fa-solid fa-pen"></i></button>
+        <button class="delete-button" title="Eliminar" onclick="deleteProduct(${key});"><i class="fa-solid fa-trash"></i></button>
       </td>
       `;
     });
   } else {
     // If local storage is empty, show a message on the table
     tableBody.innerHTML += `
-    <td colspan="5">Aún no se han agregado productos al inventario</td>
+    <td colspan="5"><i class="fa-solid fa-circle-exclamation icon-margin"></i> Aún no se han agregado productos al inventario</td>
     `;
   }
 
