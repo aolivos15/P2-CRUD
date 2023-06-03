@@ -26,9 +26,12 @@ function listProducts () {
 
   // If there are products in the local storage, list them on the table
   if (keys.length != 0) {
+    // For each key on the array, obtain the corresponding product and list it on the table
     keys.forEach( key => {
+      // Obtain product from local storage
       let product = JSON.parse(localStorage.getItem(key));
 
+      // List product on table
       tableBody.innerHTML += `
       <td>${product.name}</td>
       <td>${product.color}</td>
@@ -85,12 +88,12 @@ function deleteProduct (key) {
 
   // Get product from local storage
   const product = JSON.parse(localStorage.getItem(key));
-  // Create message to show on alert
-  const message = `¿De verdad quiere eliminar el producto "${product.name} ${product.color}"?`;
+  // Generate message to show on alert
+  const message = `¿De verdad desea eliminar el producto "${product.name} ${product.color}"?`;
 
-  // Ask if user really wants to delete the product
+  // Show an alert asking if user really wants to delete the product
   if (confirm(message)) {
-    // Remove product from array and display updated list of products
+    // Remove product from local storage and display updated list of products
     localStorage.removeItem(key);
     listProducts();
   }
@@ -105,7 +108,10 @@ function deleteProduct (key) {
 // Fill the form with the data of the product the user wants to edit
 function editProduct (key) {
 
+  // Get the product that will be edited using the key
   const product = JSON.parse(localStorage.getItem(key));
+
+  // Fill each input on the form with the corresponding product data
   prodName.value = product.name;
   prodColor.value = product.color;
   prodPrice.value = product.price;
@@ -115,7 +121,7 @@ function editProduct (key) {
   addButton.classList.add('hide');
   updateButton.classList.remove('hide');
 
-  // Add listener with update function and product key to the update button
+  // Add listener to the update button, including update function and product key
   updateButton.addEventListener('click', updateProduct(key));
 
 }
@@ -127,6 +133,7 @@ function updateProduct (key) {
     // Prevent the button from reloading the page
     event.preventDefault();
 
+    // Create a product object using the updated values from the form
     const updatedProduct = {
       name: prodName.value,
       color: prodColor.value,
@@ -134,7 +141,7 @@ function updateProduct (key) {
       quantity: prodQuantity.value
     };
 
-    // Add new product to local storage
+    // Replace updated product in local storage
     localStorage.setItem(key, JSON.stringify(updatedProduct));
 
     // Show updated product list on table and reset form
