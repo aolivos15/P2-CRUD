@@ -62,6 +62,13 @@ function addProduct (event) {
   // Prevent the button from resetting the page
   event.preventDefault();
 
+  // Check if any field of the form is empty
+  if (!prodName.value || !prodColor.value || !prodPrice.value || !prodQuantity.value) {
+    // Stop the function if any field is empty
+    alert('Por favor rellene todos los campos.');
+    return;
+  }
+
   // Generate an ID / key for the new product
   const productID = Date.now();
 
@@ -134,6 +141,13 @@ function updateProduct (key) {
   return function (event) {
     // Prevent the button from reloading the page
     event.preventDefault();
+
+    // Check if any field of the form is empty
+    if (!prodName.value || !prodColor.value || !prodPrice.value || !prodQuantity.value) {
+      // Stop the function if any field is empty
+      alert('Por favor rellene todos los campos.');
+      return;
+    }
 
     // Create a product object using the updated values from the form
     const updatedProduct = {
