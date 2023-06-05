@@ -57,6 +57,7 @@ function listProducts () {
 ////////////////////////////////////////////////////////
 addButton.addEventListener('click', addProduct);
 
+// Add new product
 function addProduct (event) {
   // Prevent the button from resetting the page
   event.preventDefault();
@@ -122,7 +123,8 @@ function editProduct (key) {
   updateButton.classList.remove('hide');
 
   // Add listener to the update button, including update function and product key
-  updateButton.addEventListener('click', updateProduct(key));
+  // The handler will only fire once
+  updateButton.addEventListener('click', updateProduct(key), { once: true });
 
 }
 
@@ -141,6 +143,8 @@ function updateProduct (key) {
       quantity: prodQuantity.value
     };
 
+    console.log(updatedProduct);
+
     // Replace updated product in local storage
     localStorage.setItem(key, JSON.stringify(updatedProduct));
 
@@ -151,6 +155,7 @@ function updateProduct (key) {
     // Hide update button and display add button
     updateButton.classList.add('hide');
     addButton.classList.remove('hide');
+
   }
 
 }
