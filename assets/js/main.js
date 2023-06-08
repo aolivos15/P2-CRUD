@@ -8,8 +8,12 @@ const updateButton = document.getElementById('update-button');
 const productForm = document.getElementById('product-form');
 const tableBody = document.getElementById('table-body');
 
+// To transform input price into Chilean pesos format
+const chileanPeso = Intl.NumberFormat('es-CL');
+
 // On page load, get all products from local storage and list them on the table
 listProducts();
+
 
 ////////////////////////////////////////////////////////
 // List stored products on the table
@@ -26,16 +30,19 @@ function listProducts () {
 
   // If there are products in the local storage, list them on the table
   if (keys.length != 0) {
+
     // For each key on the array, obtain the corresponding product and list it on the table
     keys.forEach( key => {
       // Obtain product from local storage
       let product = JSON.parse(localStorage.getItem(key));
+      // Transform the stored price into Chilean pesos format
+      let productPrice = chileanPeso.format(product.price);
 
       // List product on table
       tableBody.innerHTML += `
       <td>${product.name}</td>
       <td><div class="color-square" style="background-color: ${product.color};"></div></td>
-      <td>${product.price}</td>
+      <td>$${productPrice}</td>
       <td>${product.quantity}</td>
       <td>
         <button class="edit-button" title="Editar" onclick="editProduct(${key});"><i class="fa-solid fa-pen"></i></button>
@@ -57,8 +64,24 @@ function listProducts () {
 ////////////////////////////////////////////////////////
 addButton.addEventListener('click', addProduct);
 
-// Add new product
+// Create a new product object
+function createProduct () {
+
+    // Create the new product with the data on the form
+    const newProduct = {
+      name: prodName.value,
+      color: prodColor.value,
+      price: prodPrice.value,
+      quantity: prodQuantity.value
+    };
+
+    return newProduct;
+
+}
+
+// Add a new product to the local storage
 function addProduct (event) {
+
   // Prevent the button from resetting the page
   event.preventDefault();
 
@@ -72,20 +95,13 @@ function addProduct (event) {
   // Generate an ID / key for the new product
   const productID = Date.now();
 
-  // Create the new product with the data on the form
-  const newProduct = {
-    name: prodName.value,
-    color: prodColor.value,
-    price: prodPrice.value,
-    quantity: prodQuantity.value
-  };
-
   // Add new product to local storage
-  localStorage.setItem(productID, JSON.stringify(newProduct));
+  localStorage.setItem(productID, JSON.stringify(createProduct()));
 
   // Show updated product list on table and reset form
   listProducts();
   productForm.reset();
+
 }
 
 ////////////////////////////////////////////////////////
@@ -97,7 +113,7 @@ function deleteProduct (key) {
   // Get product from local storage
   const product = JSON.parse(localStorage.getItem(key));
   // Generate message to show on alert
-  const message = `¿De verdad desea eliminar el producto "${product.name}"?`;
+  const message = `¿De verdad desea eliminar el producto "${product.name}" de precio "${product.price}"?`;
 
   // Show an alert asking if user really wants to delete the product
   if (confirm(message)) {
@@ -149,18 +165,8 @@ function updateProduct (key) {
       return;
     }
 
-    // Create a product object using the updated values from the form
-    const updatedProduct = {
-      name: prodName.value,
-      color: prodColor.value,
-      price: prodPrice.value,
-      quantity: prodQuantity.value
-    };
-
-    console.log(updatedProduct);
-
     // Replace updated product in local storage
-    localStorage.setItem(key, JSON.stringify(updatedProduct));
+    localStorage.setItem(key, JSON.stringify(createProduct()));
 
     // Show updated product list on table and reset form
     listProducts();
