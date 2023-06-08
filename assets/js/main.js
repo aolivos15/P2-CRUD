@@ -34,7 +34,7 @@ function listProducts () {
       // List product on table
       tableBody.innerHTML += `
       <td>${product.name}</td>
-      <td>${product.color}</td>
+      <td><div class="color-square" style="background-color: ${product.color};"></div></td>
       <td>${product.price}</td>
       <td>${product.quantity}</td>
       <td>
@@ -97,7 +97,7 @@ function deleteProduct (key) {
   // Get product from local storage
   const product = JSON.parse(localStorage.getItem(key));
   // Generate message to show on alert
-  const message = `¿De verdad desea eliminar el producto "${product.name} ${product.color}"?`;
+  const message = `¿De verdad desea eliminar el producto "${product.name}"?`;
 
   // Show an alert asking if user really wants to delete the product
   if (confirm(message)) {

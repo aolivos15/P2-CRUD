@@ -126,6 +126,16 @@ nav a:hover {
     border: none;
 }
 
+.form-container label {
+    width: 80%;
+    text-align: left;
+}
+
+.form-container .color {
+    height: 36px;
+    padding: 2px;
+}
+
 .add-button, .edit-button, .delete-button {
     color: #2f2f2f;
     font-weight: bold;
@@ -189,6 +199,13 @@ nav a:hover {
 
 .table-container tbody tr:nth-child(even) {
     background-color: #c6eef7;
+}
+
+.color-square {
+    height: 40px;
+    width: 40px;
+    border-radius: 10px;
+    margin: auto;
 }
 
 .edit-button, .delete-button {

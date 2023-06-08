@@ -40,10 +40,19 @@
         <section>
             <div class="form-container container-aqua">
                 <form id="product-form" action="">
-                    <input id="prod-name" type="text" placeholder="Nombre del producto a agregar" required />
-                    <input id="prod-color" type="text" placeholder="Color del producto a agregar" required />
-                    <input id="prod-price" type="number" placeholder="Precio del producto a agregar" required />
-                    <input id="prod-quantity" type="number" placeholder="Cantidad de producto a agregar" required />
+                    <label for="prod-name">Producto:</label>
+                    <input id="prod-name" name="prod-name" type="text" placeholder="Nombre del producto a agregar" required />
+
+                    <label for="prod-color">Color:</label>
+                    <input id="prod-color" name="prod-color" type="color" class="color" value="#941c2f" required />
+
+                    <label for="prod-price">Precio:</label>
+                    <input id="prod-price" name="prod-price" type="number" placeholder="Precio del producto a agregar" required />
+
+                    <label for="prod-quantity">Cantidad:</label>
+                    <input id="prod-quantity" name="prod-quantity" type="number" placeholder="Cantidad de producto a agregar"
+                        required />
+
                     <button id="add-button" class="add-button" type="submit"><i class="fa-solid fa-circle-plus icon-margin"></i>Agregar producto</button>
                     <button id="update-button" class="add-button hide" type="submit"><i class="fa-solid fa-pen-to-square icon-margin"></i>Actualizar producto</button>
                 </form>
